@@ -7,7 +7,7 @@ package gj.forza4.player;
  * @author Cecchi, Galli, Rotini
  *
  */
-public class Cecchi implements Player {
+public class Random implements Player {
 	
 	Integer [][] board;
 	int nr, nc;
@@ -16,8 +16,20 @@ public class Cecchi implements Player {
 	 *  Metodo dell'interfaccia Player, il giocatore sceglie la propria mossa
 	 */
 	public int move() {
-		
-		return 0;
+		return random();
+	}
+	
+	public int random () {
+		boolean flag=true;
+		int a=0;
+		while(flag==true) {
+			a=(int)(Math.random()*7);
+			if(isLegalMove(a)) {
+				fill(a,1);
+				flag=false;
+			}
+		}
+		return a;
 	}
 
 	/**
