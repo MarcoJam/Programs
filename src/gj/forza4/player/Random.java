@@ -54,14 +54,18 @@ public class Random implements Player {
 	 * @param value Quale valore devo mettere nella tabella
 	 */
 	public void fill (int c, int value) {
+		board[findRow(c)][c]=value;
+	}
+	
+	public int findRow (int c) {
 		int i=0;
 		while(i<nr) {
 			if(board[i][c]==null) {
-				board[i][c]=0;
 				break;
 			}
 			i++;
 		}
+		return i;
 	}
 	
 	/**
@@ -76,8 +80,7 @@ public class Random implements Player {
 			for(int j=0; j<nr; j++) {
 				board[i][j] = null;
 			}
-		}
-		
+		}		
 	}
 	
 	/**
