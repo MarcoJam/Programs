@@ -48,28 +48,38 @@ public class Cecchi implements Player {
 		fill(c,0);
 	}
 	
-	public int controlWin () {
+	public int controlIfFour () {
+		int a = ifFour(1);
+		int b = ifFour(0);
+		if(a!=-1) {
+			return a;
+		} else if (b!=-1) {
+			return b;
+		} else {
+			return -1;
+		}
+	}
+	
+	public int ifFour (int p) {
 		int i=0;
 		while(i<nc) {
 			if(isLegalMove(i)) {
-				if(ifWin(i,1)) {
+				if(ifWin(i,p)) {
 					fill(i,1);
 					return i;
 				}
 			}
 			i++;
 		}
-		i=0;
-		while(i<nc) {
-			if(isLegalMove(i)) {
-				if(ifWin(i,0)) {
-					fill(i,1);
-					return i;
-				}
-			}
-			i++;
+		return -1;
+	}
+	
+	public int controlWin () {
+		int a = controlIfFour();
+		if(a!=-1) {
+			return a;
 		}
-		return random();
+		return random();		
 	}
 	
 	public int random () {
