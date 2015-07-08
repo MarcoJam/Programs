@@ -16,17 +16,17 @@ public class Cecchi implements Player {
 	 *  Metodo dell'interfaccia Player, il giocatore sceglie la propria mossa
 	 */
 	public int move () {
-		for(int i=0; i<nr; i++) {
-			for(int j=0; j<nc; j++) {
-				if(board[i][j]==2) {
-					System.out.print("-"+ " ");
-				} else {
-					System.out.print(board[i][j]+" ");
-				}
-			}
-			System.out.println();
-		}
-		System.out.println("----------");
+//		for(int i=nr-1; i>=0; i--) {
+//			for(int j=0; j<nc; j++) {
+//				if(board[i][j]==2) {
+//					System.out.print("-"+ " ");
+//				} else {
+//					System.out.print(board[i][j]+" ");
+//				}
+//			}
+//			System.out.println();
+//		}
+//		System.out.println("----------");
 		return controlWin();
 	}
 
@@ -34,6 +34,7 @@ public class Cecchi implements Player {
 	 *  Metodo dell'interfaccia Player, dice al giocatore di iniziare la partita
 	 */
 	public void start (int arg0, int arg1) {
+//		System.out.println("----------------------------------------------------------");
 		nr = arg0;
 		nc = arg1;
 		board = new int [nr][nc];
@@ -52,6 +53,7 @@ public class Cecchi implements Player {
 		while(i<nc) {
 			if(isLegalMove(i)) {
 				if(ifWin(i,1)) {
+					fill(i,1);
 					return i;
 				}
 			}
@@ -61,6 +63,7 @@ public class Cecchi implements Player {
 		while(i<nc) {
 			if(isLegalMove(i)) {
 				if(ifWin(i,0)) {
+					fill(i,1);
 					return i;
 				}
 			}
@@ -104,7 +107,6 @@ public class Cecchi implements Player {
 			count++;
 		}
 		if(count>=4) {
-			System.out.println("Orizzontale sì");
 			return true;
 		}
 		count=1;
@@ -115,7 +117,6 @@ public class Cecchi implements Player {
 			count++;
 		}		
 		if(count>=4) {
-			System.out.println(count+" Verticale sì");
 			return true;
 		}
 		count=1;
@@ -132,7 +133,6 @@ public class Cecchi implements Player {
 			count++;
 		}
 		if(count>=4) {
-			System.out.println("Diagonale sì");
 			return true;
 		}
 		count=1;
@@ -149,7 +149,6 @@ public class Cecchi implements Player {
 			count++;
 		}
 		if(count>=4) {
-			System.out.println("Diagonale2 sì");
 			return true;
 		}
 		return false;
